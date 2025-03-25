@@ -30,23 +30,19 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: K8S_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: CI_VERSION
-          value: "k8s/1.3.9"
-        {{- if .Values.proxy.http_proxy }}
+        {{- with .Values.proxy }}
+        {{- if .http_proxy }}
         - name: HTTP_PROXY
-          value: {{ .Values.proxy.http_proxy | quote }}
+          value: {{ .http_proxy | quote }}
         {{- end }}
-        {{- if .Values.proxy.https_proxy }}
+        {{- if .https_proxy }}
         - name: HTTPS_PROXY
-          value: {{ .Values.proxy.https_proxy | quote }}
+          value: {{ .https_proxy | quote }}
         {{- end }}
-        {{- if .Values.proxy.no_proxy }}
+        {{- if .no_proxy }}
         - name: NO_PROXY
-          value: {{ .Values.proxy.no_proxy | quote }}
+          value: {{ .no_proxy | quote }}
+        {{- end }}
         {{- end }}
         # Please don't change the mountPath
         volumeMounts:
