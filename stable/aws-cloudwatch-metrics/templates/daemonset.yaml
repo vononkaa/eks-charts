@@ -36,6 +36,18 @@ spec:
               fieldPath: metadata.namespace
         - name: CI_VERSION
           value: "k8s/1.3.9"
+        {{- if .Values.proxy.http_proxy }}
+        - name: HTTP_PROXY
+          value: {{ .Values.proxy.http_proxy | quote }}
+        {{- end }}
+        {{- if .Values.proxy.https_proxy }}
+        - name: HTTPS_PROXY
+          value: {{ .Values.proxy.https_proxy | quote }}
+        {{- end }}
+        {{- if .Values.proxy.no_proxy }}
+        - name: NO_PROXY
+          value: {{ .Values.proxy.no_proxy | quote }}
+        {{- end }}
         # Please don't change the mountPath
         volumeMounts:
         - name: cwagentconfig

@@ -43,3 +43,8 @@ statsd:
   # cloudwatch_namespace:
   # metrics_aggregation_interval:
   # metrics_collection_interval:
+
+#proxy:
+#  http_proxy: "http://your-http-proxy:port"
+#  https_proxy: "https://your-https-proxy:port"
+#  no_proxy: "localhost,127.0.0.1,.yourdomain.com"
